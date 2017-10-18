@@ -7,15 +7,15 @@ package org.lr.expriment.emall.user.service.dto;
  */
 public class AuthenticationRequest extends BaseRequest {
 
-  private String userName;
+  private String loginName;
   private String password;
 
-  public String getUserName() {
-    return userName;
+  public String getLoginName() {
+    return loginName;
   }
 
-  public void setUserName(String userName) {
-    this.userName = userName;
+  public void setLoginName(String loginName) {
+    this.loginName = loginName;
   }
 
   public String getPassword() {
@@ -29,7 +29,7 @@ public class AuthenticationRequest extends BaseRequest {
   @Override
   public String toString() {
     return "AuthenticationRequest{" +
-        "userName='" + userName + '\'' +
+        "loginName='" + loginName + '\'' +
         ", password='" + password + '\'' +
         "} " + super.toString();
   }
