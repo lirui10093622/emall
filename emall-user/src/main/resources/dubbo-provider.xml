@@ -10,13 +10,9 @@
     http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
   <dubbo:application name="emall-user-provider" owner="neil" organization="neil"/>
-  <dubbo:registry id="zk" address="127.0.0.1" protocol="zookeeper"/>
+  <dubbo:registry id="zk" address="127.0.0.1:2181" protocol="zookeeper"/>
   <dubbo:protocol name="dubbo" port="28880" accesslog="true"/>
   <dubbo:provider threads="600" accesslog="true"/>
-
-  <bean id="authenticationService" class="org.lr.expriment.emall.user.service.impl.AuthenticationServiceImpl">
-
-  </bean>
 
   <dubbo:service registry="zk" ref="authenticationService" group="emall-user"
     version="1.0.0" timeout="30000"
