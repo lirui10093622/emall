@@ -4,33 +4,35 @@
   <groupId>org.lr.expriment</groupId>
   <artifactId>emall</artifactId>
   <packaging>pom</packaging>
-  <version>{project.version}</version>
+  <version>0.0.1-SNAPSHOT</version>
+
   <name>emall</name>
+  <description>电商系统</description>
+
   <modules>
-	<!-- 前端系统 -->
+    <!-- 前端系统 -->
     <module>emall-frontend</module>
-	<!-- 物流系统 -->
+    <!-- 物流系统 -->
     <module>emall-logistics</module>
-	<!-- 监控系统 -->
-	<module>emall-monitor</module>
-	<!-- 订单系统 -->
-	<module>emall-order</module>
-	<!-- 支付系统 -->
-	<module>emall-pay</module>
-	<!-- 商品系统 -->
-	<module>emall-commodity</module>
-	<!-- 购物车系统 -->
-	<module>emall-shopping-cart</module>
-	<!-- 库存系统 -->
-	<module>emall-stock</module>
-	<!-- 交易系统 -->
-	<module>emall-trade</module>
-	<!-- 用户系统 -->
-	<module>emall-user</module>
+    <!-- 监控系统 -->
+    <module>emall-monitor</module>
+    <!-- 订单系统 -->
+    <module>emall-order</module>
+    <!-- 支付系统 -->
+    <module>emall-pay</module>
+    <!-- 商品系统 -->
+    <module>emall-commodity</module>
+    <!-- 购物车系统 -->
+    <module>emall-shopping-cart</module>
+    <!-- 库存系统 -->
+    <module>emall-stock</module>
+    <!-- 交易系统 -->
+    <module>emall-trade</module>
+    <!-- 用户系统 -->
+    <module>emall-user</module>
   </modules>
 
   <properties>
-    <project.version>0.0.1-SNAPSHOT</project.version>
     <spring.version>4.3.7.RELEASE</spring.version>
     <dubbo.version>2.5.3</dubbo.version>
   </properties>

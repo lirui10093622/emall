@@ -2,13 +2,15 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-	<groupId>org.lr.expriment</groupId>
-	<artifactId>emall</artifactId>
-	<version>{project.version}</version>
+    <groupId>org.lr.expriment</groupId>
+    <artifactId>emall</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>emall-trade</artifactId>
   <packaging>war</packaging>
+
   <name>emall-trade</name>
+  <description>交易系统</description>
 
   <dependencies>
     <dependency>
