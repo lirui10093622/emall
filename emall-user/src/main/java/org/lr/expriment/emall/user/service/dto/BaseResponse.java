@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * @author 李锐
- * @email rui.li04@mljr.com
+ * @email lirui10093622@163.com
  * @time 2017-10-12 20:12:43
  */
 public abstract class BaseResponse implements Serializable {

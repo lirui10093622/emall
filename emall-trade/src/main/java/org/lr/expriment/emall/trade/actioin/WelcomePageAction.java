@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @author 李锐
- * @email rui.li04@mljr.com
+ * @email lirui10093622@163.com
  * @time 2017-10-23 13:52:25
  */
 public class WelcomePageAction {

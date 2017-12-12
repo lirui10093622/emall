@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * @author 李锐
- * @email rui.li04@mljr.com
+ * @email lirui10093622@163.com
  * @time 2017-10-12 20:09:50
  */
 public class AuthenticationServiceImpl implements IAuthenticationService {

@@ -2,7 +2,7 @@ package org.lr.expriment.emall.user.entity;
 
 /**
  * @author 李锐
- * @email rui.li04@mljr.com
+ * @email lirui10093622@163.com
  * @time 2017-10-17 14:02:23
  */
 public enum UserState {

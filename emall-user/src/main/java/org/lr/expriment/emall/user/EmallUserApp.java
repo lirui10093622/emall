@@ -5,7 +5,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * @author 李锐
- * @email rui.li04@mljr.com
+ * @email lirui10093622@163.com
  * @time 2017-10-13 13:48:09
  */
 public class EmallUserApp {
