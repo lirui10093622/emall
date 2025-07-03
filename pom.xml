@@ -4,32 +4,17 @@
   <groupId>org.lr.expriment</groupId>
   <artifactId>emall</artifactId>
   <packaging>pom</packaging>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
 
   <name>emall</name>
   <description>电商系统</description>
 
   <modules>
-    <!-- 前端系统 -->
-    <module>emall-frontend</module>
-    <!-- 物流系统 -->
-    <module>emall-logistics</module>
-    <!-- 监控系统 -->
-    <module>emall-monitor</module>
-    <!-- 订单系统 -->
-    <module>emall-order</module>
-    <!-- 支付系统 -->
-    <module>emall-pay</module>
-    <!-- 商品系统 -->
-    <module>emall-commodity</module>
-    <!-- 购物车系统 -->
-    <module>emall-shopping-cart</module>
-    <!-- 库存系统 -->
-    <module>emall-stock</module>
-    <!-- 交易系统 -->
-    <module>emall-trade</module>
-    <!-- 用户系统 -->
     <module>emall-user</module>
+    <module>emall-product</module>
+    <module>emall-order</module>
+    <module>emall-pay</module>
+    <module>emall-shopping-cart</module>
   </modules>
 
   <properties>
@@ -82,7 +67,6 @@
         <artifactId>druid</artifactId>
         <version>RELEASE</version>
       </dependency>
-
     </dependencies>
   </dependencyManagement>
 </project>
