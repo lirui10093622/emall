@@ -1,72 +1,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>org.lr.expriment</groupId>
-  <artifactId>emall</artifactId>
-  <packaging>pom</packaging>
-  <version>1.0.0-SNAPSHOT</version>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <name>emall</name>
-  <description>电商系统</description>
+    <groupId>org.emall</groupId>
+    <artifactId>emall</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0-SNAPSHOT</version>
 
-  <modules>
-    <module>emall-user</module>
-    <module>emall-product</module>
-    <module>emall-order</module>
-    <module>emall-pay</module>
-    <module>emall-shopping-cart</module>
-  </modules>
-
-  <properties>
-    <spring.version>4.3.7.RELEASE</spring.version>
-    <dubbo.version>2.5.3</dubbo.version>
-  </properties>
-
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-context</artifactId>
-        <version>${spring.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-tx</artifactId>
-        <version>${spring.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-jdbc</artifactId>
-        <version>${spring.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-context-support</artifactId>
-        <version>${spring.version}</version>
-      </dependency>
-
-      <!--<dependency>
-        <groupId>org.apache.zookeeper</groupId>
-        <artifactId>zookeeper</artifactId>
-        <version>3.4.6</version>
-      </dependency>-->
-      <dependency>
-        <groupId>com.101tec</groupId>
-        <artifactId>zkclient</artifactId>
-        <version>0.10</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.alibaba</groupId>
-        <artifactId>dubbo</artifactId>
-        <version>${dubbo.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.alibaba</groupId>
-        <artifactId>druid</artifactId>
-        <version>RELEASE</version>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
+    <name>emall</name>
+    <description>电商系统</description>
+    <modules>
+        <module>emall-common</module>
+        <module>emall-user</module>
+        <module>emall-product</module>
+        <module>emall-order</module>
+        <module>emall-pay</module>
+        <module>emall-shopping-cart</module>
+    </modules>
 </project>

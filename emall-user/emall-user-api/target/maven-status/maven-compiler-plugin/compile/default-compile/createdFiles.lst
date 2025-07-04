@@ -1,0 +1,7 @@
+org\emall\user\api\dto\RegisterResponse.class
+org\emall\user\api\dto\LoginRequest.class
+org\emall\user\api\dto\LoginResponse.class
+org\emall\user\api\EmallUserService.class
+org\emall\user\api\dto\RegisterRequest$Passenger.class
+org\emall\user\api\dto\RegisterRequest.class
+org\emall\user\api\dto\RegisterRequest$OrderItem.class
