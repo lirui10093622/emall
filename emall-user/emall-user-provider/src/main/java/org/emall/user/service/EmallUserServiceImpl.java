@@ -1,32 +1,39 @@
 package org.emall.user.service;
 
+import cn.hutool.crypto.digest.DigestUtil;
 import org.apache.dubbo.config.annotation.DubboService;
-import org.emall.common.exception.EmallException;
 import org.emall.user.api.EmallUserService;
-import org.emall.user.api.dto.LoginRequest;
-import org.emall.user.api.dto.LoginResponse;
-import org.emall.user.api.dto.RegisterRequest;
-import org.emall.user.api.dto.RegisterResponse;
+import org.emall.user.api.request.LoginRequest;
+import org.emall.user.api.request.RegisterRequest;
+import org.emall.user.api.response.LoginResponse;
+import org.emall.user.api.response.RegisterResponse;
 import org.emall.user.mapper.UserMapper;
-import org.emall.user.support.ConfigHandler;
+import org.emall.user.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 @DubboService
 public class EmallUserServiceImpl implements EmallUserService {
     @Autowired
-    private UserMapper orderTaskMapper;
-    @Autowired
-    private UserMapper orderPassengerMapper;
-    @Autowired
-    private ConfigHandler configHandler;
+    private UserMapper userMapper;
 
     @Override
-    public LoginResponse login(LoginRequest request) throws EmallException {
-        return null;
+    @Transactional
+    public RegisterResponse register(RegisterRequest request) {
+        User user = new User();
+        user.setUsername(request.getUsername());
+        user.setPassword(DigestUtil.md5Hex(request.getPassword()));
+        user.setPhone(request.getPhone());
+        user.setEmail(request.getEmail());
+        userMapper.insertSelective(user);
+        RegisterResponse response = new RegisterResponse();
+        response.setSuccess(true);
+        response.setMessage("success");
+        return response;
     }
 
     @Override
-    public RegisterResponse register(RegisterRequest request) throws EmallException {
+    public LoginResponse login(LoginRequest request) {
         return null;
     }
 }

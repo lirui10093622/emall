@@ -1,4 +1,4 @@
-package org.emall.user.api.dto;
+package org.emall.user.api.response;
 
 import org.emall.common.response.EmallResponse;
 

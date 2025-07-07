@@ -11,6 +11,7 @@
     <description>电商系统</description>
     <modules>
         <module>emall-common</module>
+        <module>emall-facade</module>
         <module>emall-user</module>
         <module>emall-product</module>
         <module>emall-order</module>

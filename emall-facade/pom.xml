@@ -11,12 +11,12 @@
     </parent>
 
     <groupId>org.emall</groupId>
-    <artifactId>emall-user-provider</artifactId>
+    <artifactId>emall-facade</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>emall-user-provider</name>
-    <description>用户模块-服务提供者</description>
+    <name>emall-facade</name>
+    <description>门面模块</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -26,6 +26,11 @@
 
     <dependencies>
         <!-- 项目内部的jar包 -->
+        <dependency>
+            <groupId>org.emall</groupId>
+            <artifactId>emall-common</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>org.emall</groupId>
             <artifactId>emall-user-api</artifactId>
@@ -42,13 +47,12 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-            <version>3.4.4</version>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-            <version>2.3.2.RELEASE</version>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <version>3.4.4</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -74,32 +78,12 @@
             <version>2.7.8</version>
         </dependency>
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.1.9</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>1.3.2</version>
-        </dependency>
-        <dependency>
-            <groupId>tk.mybatis</groupId>
-            <artifactId>mapper-spring-boot-starter</artifactId>
-            <version>2.0.2</version>
-        </dependency>
-        <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>1.2.5</version>
         </dependency>
         <!-- spring boot第三方jar包 -->
 
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-            <version>5.6.6</version>
-        </dependency>
         <dependency>
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-framework</artifactId>
@@ -114,19 +98,6 @@
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-typehandlers-jsr310</artifactId>
             <version>1.0.2</version>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <!--
-                为了支持emoji(连接的charset使用utf8mb4), 有几种做法:
-                1. 推荐做法: mysql server端character_set_server=utf8mb4, connector使用5.1.22以上的版本, 这时候会autodetect到server端的配置
-                2. jdbc url里面指定useUnicode=true&characterEncoding=utf-8,
-                   connector使用5.1.47以上版本(5.1.13事实上也行, 中间的基本都不行, 但官方文档说明是5.1.47以上), utf-8会被映射到utf8mb4
-                3. connector使用5.1.13到5.1.21版本, 在detect到本地到encoding是utf-8以后, 会优先使用utf8mb4
-                目前我们多数项目采用的是3
-             -->
-            <version>5.1.13</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

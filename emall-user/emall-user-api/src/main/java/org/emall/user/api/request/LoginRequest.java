@@ -1,4 +1,4 @@
-package org.emall.user.api.dto;
+package org.emall.user.api.request;
 
 import org.emall.common.request.EmallRequest;
 
