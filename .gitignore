@@ -23,6 +23,8 @@ hs_err_pid*
 
 # ideal files
 .idea
-*/target
 *.iml
 */*.iml
+
+# maven target
+target/

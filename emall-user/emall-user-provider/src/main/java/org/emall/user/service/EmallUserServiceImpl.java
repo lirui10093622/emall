@@ -3,6 +3,7 @@ package org.emall.user.service;
 import cn.hutool.crypto.digest.DigestUtil;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.emall.user.api.EmallUserService;
+import org.emall.user.api.dto.UserInfoDto;
 import org.emall.user.api.request.LoginRequest;
 import org.emall.user.api.request.RegisterRequest;
 import org.emall.user.api.response.LoginResponse;
@@ -29,6 +30,12 @@ public class EmallUserServiceImpl implements EmallUserService {
         RegisterResponse response = new RegisterResponse();
         response.setSuccess(true);
         response.setMessage("success");
+        UserInfoDto userInfoDto =new UserInfoDto();
+        userInfoDto.setUserId(user.getId());
+        userInfoDto.setUsername(user.getUsername());
+        userInfoDto.setPhone(user.getPhone());
+        userInfoDto.setEmail(user.getEmail());
+        response.setUserInfo(userInfoDto);
         return response;
     }
 

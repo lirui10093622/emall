@@ -13,9 +13,9 @@
         <module>emall-common</module>
         <module>emall-facade</module>
         <module>emall-user</module>
-        <module>emall-product</module>
+        <!--<module>emall-product</module>
         <module>emall-order</module>
         <module>emall-pay</module>
-        <module>emall-shopping-cart</module>
+        <module>emall-shopping-cart</module>-->
     </modules>
 </project>

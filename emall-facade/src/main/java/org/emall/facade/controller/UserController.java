@@ -15,15 +15,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("api/user")
 public class UserController {
-    @DubboReference
+    @DubboReference(check = false)
     private EmallUserService emallUserService;
 
     @RequestMapping("register")
     public ApiResponse register(@RequestBody RegisterVo registerVo) {
         RegisterRequest request = new RegisterRequest();
+        request.setUsername(registerVo.getUsername());
+        request.setPassword(registerVo.getPassword());
+        request.setPhone(registerVo.getPhone());
+        request.setEmail(registerVo.getEmail());
         RegisterResponse response = emallUserService.register(request);
         if (response.isSuccess()) {
-            return ApiResponse.success(UserInfoVo.from(response.getUserInfoDto()));
+            return ApiResponse.success(UserInfoVo.from(response.getUserInfo()));
         }
         return ApiResponse.fail(ApiResultCode.FAIL.getCode(), response.getMessage());
     }
