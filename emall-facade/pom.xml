@@ -66,6 +66,11 @@
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-redis</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
         <!-- spring boot官方jar包 -->
 
         <!-- spring boot第三方jar包 -->
@@ -124,6 +129,16 @@
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
             <version>3.5.2</version>
+        </dependency>
+        <!--<dependency>
+            <groupId>com.octo.captcha</groupId>
+            <artifactId>jcaptcha</artifactId>
+            <version>1.0</version>
+        </dependency>-->
+        <dependency>
+            <groupId>com.github.penggle</groupId>
+            <artifactId>kaptcha</artifactId>
+            <version>2.3.2</version>
         </dependency>
     </dependencies>
 

@@ -1,17 +1,21 @@
 package org.emall.common.exception;
 
+import lombok.Getter;
+
 import java.io.Serializable;
 
-public class EmallException extends Exception implements Serializable {
-    public EmallException() {
-        super();
-    }
+@Getter
+public class EmallException extends RuntimeException implements Serializable {
 
-    public EmallException(String message) {
+    private String code;
+
+    public EmallException(String code, String message) {
         super(message);
+        this.code = code;
     }
 
-    public EmallException(String message, Throwable cause) {
+    public EmallException(String code, String message, Throwable cause) {
         super(message, cause);
+        this.code = code;
     }
 }

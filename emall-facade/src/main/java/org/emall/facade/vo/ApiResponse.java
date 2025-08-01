@@ -3,8 +3,10 @@ package org.emall.facade.vo;
 import lombok.Data;
 import org.emall.common.enums.ApiResultCode;
 
+import java.io.Serializable;
+
 @Data
-public class ApiResponse {
+public class ApiResponse implements Serializable {
     private String code;
     private String message;
     private Object data;

@@ -3,8 +3,10 @@ package org.emall.facade.vo;
 import lombok.Data;
 import org.emall.user.api.dto.UserInfoDto;
 
+import java.io.Serializable;
+
 @Data
-public class UserInfoVo {
+public class UserInfoVo implements Serializable {
     private Long userId;
     private String username;
     private String password;

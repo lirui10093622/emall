@@ -10,6 +10,6 @@ import tk.mybatis.spring.annotation.MapperScan;
 @MapperScan("org.emall.user.mapper")
 public class EmallUserApplication {
     public static void main(String[] args) {
-        SpringApplication.run(org.emall.user.EmallUserApplication.class, args);
+        SpringApplication.run(EmallUserApplication.class, args);
     }
 }

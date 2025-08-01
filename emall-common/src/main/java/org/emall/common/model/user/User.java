@@ -1,4 +1,4 @@
-package org.emall.user.model;
+package org.emall.common.model.user;
 
 import lombok.Data;
 
@@ -53,8 +53,14 @@ public class User {
     @Column(name = "last_login_ip")
     private String lastLoginIp;
 
+    @Column(name = "create_user")
+    private String createUser;
+
     @Column(name = "create_time")
     private Date createTime;
+
+    @Column(name = "update_user")
+    private String updateUser;
 
     @Column(name = "update_time")
     private Date updateTime;
