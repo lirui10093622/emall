@@ -9,15 +9,19 @@ import java.util.List;
 
 @Data
 public class LoginUser implements Serializable {
-    // 是否匿名
-    private boolean anonymous;
 
-    // 基本信息
-    private Long userId;
-    private String loginName;
-    private String nickname;
+    private boolean authenticated;
 
-    // 角色与权限
+    private Long id;
+    private String name;
+    private LoginInfo loginInfo;
+
     private List<Role> roles;
     private List<Permission> permissions;
+
+    // 授权上下文信息
+    // private boolean authorized;
+    // private HttpServletRequest request;
+    // private HttpServletResponse response;
+    // private Object handler;
 }

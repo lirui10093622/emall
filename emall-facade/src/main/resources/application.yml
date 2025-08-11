@@ -1,3 +1,5 @@
+server:
+  port: 80
 spring:
   redis:
     host: 127.0.0.1
@@ -14,5 +16,8 @@ dubbo:
   consumer:
     check: false
     lazy: true
-server:
-  port: 80
+    timeout: 1000000
+jwt:
+  authorizationType: Bearer
+  secret: test
+  ttl: 1440

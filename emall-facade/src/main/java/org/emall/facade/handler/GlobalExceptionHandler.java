@@ -1,8 +1,9 @@
 package org.emall.facade.handler;
 
 import lombok.extern.slf4j.Slf4j;
-import org.emall.common.enums.ApiResultCode;
+import org.emall.common.enums.ApiResult;
 import org.emall.common.exception.EmallException;
+import org.emall.common.exception.InvalidParameterException;
 import org.emall.common.response.EmallResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
@@ -22,21 +23,28 @@ public class GlobalExceptionHandler {
     @ExceptionHandler({Exception.class})
     public EmallResponse<Void> handleException(Exception e) {
         log.error("handleException", e);
-        return EmallResponse.fail(ApiResultCode.FAIL.getCode(), e.getMessage());
+        return EmallResponse.fail(ApiResult.FAIL.getCode(), e.getMessage());
     }
 
     @ResponseStatus(code = HttpStatus.OK)
-    @ExceptionHandler({EmallException.class})
+    @ExceptionHandler(EmallException.class)
     public EmallResponse<Void> handleEmallException(EmallException e) {
         log.error("handleEmallException", e);
         return EmallResponse.fail(e.getCode(), e.getMessage());
     }
 
     @ResponseStatus(code = HttpStatus.OK)
+    @ExceptionHandler(InvalidParameterException.class)
+    public EmallResponse<Void> handleInvalidParameterException(InvalidParameterException e) {
+        log.warn("handleInvalidParameterException", e);
+        return EmallResponse.fail(e.getCode(), e.getMessage());
+    }
+
+    @ResponseStatus(code = HttpStatus.OK)
     @ExceptionHandler({MethodArgumentNotValidException.class})
     public EmallResponse<Void> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
-        log.error("handleMethodArgumentNotValidException", e);
-        return EmallResponse.fail(ApiResultCode.PARAMETER_NOT_VALID.getCode(), parseMessage(e));
+        log.warn("handleMethodArgumentNotValidException", e);
+        return EmallResponse.fail(ApiResult.INVALID_PARAMETER.getCode(), parseMessage(e));
     }
 
     protected String parseMessage(MethodArgumentNotValidException e) {

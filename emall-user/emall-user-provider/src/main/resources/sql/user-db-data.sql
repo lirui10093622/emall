@@ -6,8 +6,8 @@ insert into t_role(`id`, `name`, `desc`, `create_user`)
 values (1, '超级管理员角色', '超级管理员角色', 'SYSTEM');
 
 
-insert into t_permission(`id`, `name`, `path`, `operation`, `create_user`)
-values (1, '所有权限', '/**', 'ALL', 'SYSTEM');
+insert into t_permission(`id`, `name`, `path`, `operation`, `desc`, `create_user`)
+values (1, '所有权限', '/**', 'ALL', '所有权限', 'SYSTEM');
 
 
 insert into t_user_role(`user_id`, `role_id`, `create_user`)

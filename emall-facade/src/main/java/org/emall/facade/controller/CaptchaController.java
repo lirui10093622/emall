@@ -1,10 +1,10 @@
 package org.emall.facade.controller;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
-import org.emall.common.enums.ApiResultCode;
+import org.emall.common.enums.ApiResult;
+import org.emall.common.response.EmallResponse;
 import org.emall.facade.annotation.Auth;
 import org.emall.facade.utils.RandomTextUtils;
-import org.emall.facade.vo.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -36,7 +36,7 @@ public class CaptchaController {
 
     @GetMapping("validate")
     @ResponseBody
-    public ApiResponse validate(@Param("text") String text) {
-        return Objects.equals(keepText, text) ? ApiResponse.success(null) : ApiResponse.fail(ApiResultCode.FAIL.getCode(), "text is wrong");
+    public EmallResponse<Void> validate(@Param("text") String text) {
+        return Objects.equals(keepText, text) ? EmallResponse.success() : EmallResponse.fail(ApiResult.FAIL.getCode(), "text is wrong");
     }
 }

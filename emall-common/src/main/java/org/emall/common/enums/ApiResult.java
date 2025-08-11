@@ -1,11 +1,13 @@
 package org.emall.common.enums;
 
-public enum ApiResultCode {
+public enum ApiResult {
     SUCCESS("0000", "success"),
     FAIL("0001", "fail"),
-    PARAMETER_NOT_VALID("0002", "parameter not valid");
+    INVALID_PARAMETER("0002", "parameter not valid"),
+    NO_PERMISSION("0003", "no permission"),
+    ;
 
-    ApiResultCode(String code, String message) {
+    ApiResult(String code, String message) {
         this.code = code;
         this.message = message;
     }

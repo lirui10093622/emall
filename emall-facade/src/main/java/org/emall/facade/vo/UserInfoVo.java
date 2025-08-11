@@ -7,16 +7,16 @@ import java.io.Serializable;
 
 @Data
 public class UserInfoVo implements Serializable {
-    private Long userId;
-    private String username;
+    private Long id;
+    private String name;
     private String password;
     private String phone;
     private String email;
 
     public static UserInfoVo from(UserInfoDto userInfoDto) {
         UserInfoVo vo = new UserInfoVo();
-        vo.setUserId(userInfoDto.getUserId());
-        vo.setUsername(userInfoDto.getUsername());
+        vo.setId(userInfoDto.getId());
+        vo.setName(userInfoDto.getName());
         vo.setPassword(userInfoDto.getPassword());
         vo.setPhone(userInfoDto.getPhone());
         vo.setEmail(userInfoDto.getEmail());

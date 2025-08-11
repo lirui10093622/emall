@@ -1,40 +1,41 @@
 package org.emall.common.model.user;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
-@Entity
-@Table(name = "t_permission")
-public class Permission {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+@TableName("t_permission")
+public class Permission implements Serializable {
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    @Column(name = "name")
+    @TableField("name")
     private String name;
 
-    @Column(name = "path")
+    @TableField("path")
     private String path;
 
-    @Column(name = "operation")
+    @TableField("operation")
     private String operation;
 
-    @Column(name = "`desc`")
+    @TableField("`desc`")
     private String desc;
 
-    @Column(name = "create_user")
+    @TableField("create_user")
     private String createUser;
 
-    @Column(name = "create_time")
+    @TableField("create_time")
     private Date createTime;
 
-    @Column(name = "update_user")
+    @TableField("update_user")
     private String updateUser;
 
-    @Column(name = "update_time")
+    @TableField("update_time")
     private Date updateTime;
 }

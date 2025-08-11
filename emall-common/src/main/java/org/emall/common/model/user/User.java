@@ -1,67 +1,69 @@
 package org.emall.common.model.user;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
-@Entity
-@Table(name = "t_user")
-public class User {
+@TableName("t_user")
+public class User implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    @Column(name = "username")
-    private String username;
+    @TableField("name")
+    private String name;
 
-    @Column(name = "password")
+    @TableField("password")
     private String password;
 
-    @Column(name = "nickname")
+    @TableField("nickname")
     private String nickname;
 
-    @Column(name = "phone")
+    @TableField("phone")
     private String phone;
 
-    @Column(name = "email")
+    @TableField("email")
     private String email;
 
-    @Column(name = "avatar")
+    @TableField("avatar")
     private String avatar;
 
-    @Column(name = "gender")
+    @TableField("gender")
     private Integer gender;
 
-    @Column(name = "birthday")
+    @TableField("birthday")
     private Date birthday;
 
-    @Column(name = "source_type")
+    @TableField("source_type")
     private Integer sourceType;
 
-    @Column(name = "status")
+    @TableField("status")
     private Integer status = 1;
 
-    @Column(name = "user_level")
+    @TableField("user_level")
     private Integer userLevel;
 
-    @Column(name = "last_login_time")
+    @TableField("last_login_time")
     private Date lastLoginTime;
 
-    @Column(name = "last_login_ip")
+    @TableField("last_login_ip")
     private String lastLoginIp;
 
-    @Column(name = "create_user")
+    @TableField("create_user")
     private String createUser;
 
-    @Column(name = "create_time")
+    @TableField("create_time")
     private Date createTime;
 
-    @Column(name = "update_user")
+    @TableField("update_user")
     private String updateUser;
 
-    @Column(name = "update_time")
+    @TableField("update_time")
     private Date updateTime;
 }

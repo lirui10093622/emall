@@ -46,8 +46,8 @@ CREATE TABLE IF NOT EXISTS `t_permission`
 (
     `id` bigint NOT NULL AUTO_INCREMENT COMMENT '权限ID',
     `name` varchar(50) NOT NULL COMMENT '权限名',
-    `path` varchar(500) NOT NULL COMMENT '路径, 支持模式匹配',
-    `operation` varchar(10) NOT NULL COMMENT '操作类型: ALL, QUERY, ADD, UPDATE, DELETE',
+    `path` varchar(500) NOT NULL COMMENT 'Ant路径模式',
+    `operation` varchar(10) NOT NULL COMMENT '操作类型: ALL, GET, POST, PUT, DELETE',
     `desc` varchar(500) DEFAULT NULL COMMENT '描述',
     `create_user` varchar(20) DEFAULT '' COMMENT '创建人',
     `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',

@@ -25,9 +25,12 @@ spring:
     port: 6379
     password:
     database: 0
-mybatis:
-  type-aliases-package: org.emall.user.model
+mybatis-plus:
+  type-aliases-package: org.emall.common.model.user
   mapper-locations: classpath:mapper/*.xml
+  global-config:
+    db-config:
+      table-prefix: t_
 dubbo:
   application:
     name: emall-user-provider
