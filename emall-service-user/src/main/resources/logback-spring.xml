@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <springProperty scope="context" name="appName" source="spring.application.name"/>
+    <springProperty scope="context" name="logPath" source="logging.file.path" defaultValue="./logs"/>
+    <!--    打印到控制台 -->
+    <appender name="consoleApp" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>
+                %date{yyyy-MM-dd HH:mm:ss.SSS} %-5level[%thread]%logger{56}.%method:%L -%msg%n
+            </pattern>
+        </layout>
+    </appender>
+
+    <!--   打印到文件 -->
+    <appender name="fileInfoApp" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+        <encoder>
+            <pattern>
+                %date{yyyy-MM-dd HH:mm:ss.SSS} %-5level[%thread]%logger{56}.%method:%L -%msg%n
+            </pattern>
+        </encoder>
+        <!-- 滚动策略 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 路径 -->
+            <fileNamePattern>${logPath}/${appName}.%d.log</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+
+    <!--  打印到文件 -->
+    <appender name="fileErrorApp" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <encoder>
+            <pattern>
+                %date{yyyy-MM-dd HH:mm:ss.SSS} %-5level[%thread]%logger{56}.%method:%L -%msg%n
+            </pattern>
+        </encoder>
+
+        <!-- 设置滚动策略 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 路径,因为有 %d所以每天都会意时间来创建新的文件 -->
+            <fileNamePattern>${logPath}/${appName}.err.%d.log</fileNamePattern>
+
+            <!-- 控制保留的归档文件的最大数量，超出数量就删除旧文件，假设设置每个月滚动，
+            且<maxHistory> 是1，则只保存最近1个月的文件，删除之前的旧文件 -->
+            <MaxHistory>1</MaxHistory>
+
+            <!--   保持30天的历史记录上限为3GB总大小 -->
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+    <!--这里选择INFO就代表，进行INFO级别输出记录，那么在控制台也好，log文件也好只记录INFO及以上级别的日志，这里相当于第一道过滤器-->
+    <root level="DEBUG">
+        <appender-ref ref="consoleApp"/>
+        <appender-ref ref="fileInfoApp"/>
+        <appender-ref ref="fileErrorApp"/>
+    </root>
+</configuration>

@@ -6,16 +6,23 @@
     <artifactId>emall</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0-SNAPSHOT</version>
-
     <name>emall</name>
     <description>电商系统</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+    </properties>
+
     <modules>
+        <module>emall-api</module>
         <module>emall-common</module>
-        <module>emall-facade</module>
-        <module>emall-user</module>
-        <!--<module>emall-product</module>
-        <module>emall-order</module>
-        <module>emall-pay</module>
-        <module>emall-shopping-cart</module>-->
+        <module>emall-service-facade</module>
+        <module>emall-service-order</module>
+        <module>emall-service-product</module>
+        <module>emall-service-pay</module>
+        <module>emall-service-shoppingCart</module>
+        <module>emall-service-user</module>
     </modules>
 </project>
