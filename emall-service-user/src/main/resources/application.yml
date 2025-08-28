@@ -40,7 +40,3 @@ mybatis-plus:
 dubbo:
   registry:
     address: zookeeper://zookeeper.middleware.emall.docker:2181
-
-logging:
-  file:
-    path: D:\logs
