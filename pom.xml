@@ -16,13 +16,8 @@
     </properties>
 
     <modules>
-        <module>emall-api</module>
         <module>emall-common</module>
-        <module>emall-service-facade</module>
-        <module>emall-service-order</module>
-        <module>emall-service-product</module>
-        <module>emall-service-pay</module>
-        <module>emall-service-shoppingCart</module>
-        <module>emall-service-user</module>
+        <module>emall-api</module>
+        <module>emall-service</module>
     </modules>
 </project>
