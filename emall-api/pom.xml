@@ -15,7 +15,13 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
     <modules>
-        <module>emall-api-user</module>
+        <module>emall-api-cart</module>
         <module>emall-api-order</module>
+        <module>emall-api-pay</module>
+        <module>emall-api-product</module>
+        <module>emall-api-search</module>
+        <module>emall-api-sms</module>
+        <module>emall-api-user</module>
+        <module>emall-api-base</module>
     </modules>
 </project>

@@ -6,7 +6,7 @@
     <appender name="consoleApp" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
             <pattern>
-                %date{yyyy-MM-dd HH:mm:ss.SSS} %-5level[%thread]%logger{56}.%method:%L -%msg%n
+                %date{yyyy-MM-dd HH:mm:ss.SSS} [${appName},%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-B3-ParentSpanId},%X{X-Span-Export}][%thread]%logger{56}.%method:%L -%msg%n
             </pattern>
         </layout>
     </appender>
@@ -20,7 +20,7 @@
         </filter>
         <encoder>
             <pattern>
-                %date{yyyy-MM-dd HH:mm:ss.SSS} %-5level[%thread]%logger{56}.%method:%L -%msg%n
+                %date{yyyy-MM-dd HH:mm:ss.SSS} [${appName},%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-B3-ParentSpanId},%X{X-Span-Export}][%thread]%logger{56}.%method:%L -%msg%n
             </pattern>
         </encoder>
         <!-- 滚动策略 -->
@@ -37,7 +37,7 @@
         </filter>
         <encoder>
             <pattern>
-                %date{yyyy-MM-dd HH:mm:ss.SSS} %-5level[%thread]%logger{56}.%method:%L -%msg%n
+                %date{yyyy-MM-dd HH:mm:ss.SSS} [${appName},%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-B3-ParentSpanId},%X{X-Span-Export}][%thread]%logger{56}.%method:%L -%msg%n
             </pattern>
         </encoder>
 

@@ -6,7 +6,7 @@ RUN apt-get update  && \
 
 LABEL maintainer="Li Rui <lirui10093622@163.com>"
 LABEL author="Li Rui" version="1.0.0" description="用户模块-服务提供者"
-EXPOSE 20880
+EXPOSE 8087
 WORKDIR /
 ADD target/emall-service-user-1.0.0-SNAPSHOT.jar app.jar
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]

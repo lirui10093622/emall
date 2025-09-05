@@ -1,0 +1,2 @@
+CREATE DATABASE IF NOT EXISTS `pay-db`;
+USE `pay-db`;

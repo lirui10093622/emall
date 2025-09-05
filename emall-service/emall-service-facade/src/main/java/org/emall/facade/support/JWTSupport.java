@@ -34,7 +34,9 @@ public class JWTSupport {
         builder.withClaim("userId", userInfoDto.getId());
         builder.withClaim("userName", userInfoDto.getName());
         builder.withClaim("loginInfo", JSON.toJSONString(loginInfo));
-        return builder.withExpiresAt(calendar.getTime()).sign(Algorithm.HMAC256(config.getSecret()));
+        String token = builder.withExpiresAt(calendar.getTime()).sign(Algorithm.HMAC256(config.getSecret()));
+        log.info("createToken, token: {}", token);
+        return token;
     }
 
     public DecodedJWT verify(String token) {
@@ -52,6 +54,7 @@ public class JWTSupport {
             loginUser.setName(name);
             loginUser.setLoginInfo(loginInfo);
             loginUser.setAuthenticated(true);
+            log.info("parseToken, loginUser: {}", loginUser);
         } catch (JWTVerificationException e) {
             log.warn("jwt verify failed", e);
         } catch (Exception e) {

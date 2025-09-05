@@ -3,21 +3,23 @@ package org.emall.user.service;
 import cn.hutool.crypto.digest.DigestUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.google.common.collect.Lists;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.dubbo.config.annotation.DubboService;
+import org.emall.api.dto.HealthDto;
 import org.emall.common.enums.ApiResult;
+import org.emall.common.enums.AppStatusEnum;
+import org.emall.common.exception.EmallException;
 import org.emall.common.exception.InvalidParameterException;
 import org.emall.common.request.EmallRequest;
 import org.emall.common.response.EmallResponse;
 import org.emall.user.api.EmallUserService;
-import org.emall.user.api.dto.LoginDto;
-import org.emall.user.api.dto.RegisterDto;
-import org.emall.user.api.dto.RolesAndPermissionsDto;
-import org.emall.user.api.dto.UserInfoDto;
+import org.emall.user.api.dto.*;
 import org.emall.user.api.enums.AccountType;
 import org.emall.user.mapper.*;
 import org.emall.user.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
@@ -28,8 +30,11 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+@Slf4j
 @DubboService
 public class EmallUserServiceImpl implements EmallUserService {
+    @Value("${spring.application.name}")
+    private String appName;
     @Autowired
     private UserMapper userMapper;
     @Autowired
@@ -42,6 +47,11 @@ public class EmallUserServiceImpl implements EmallUserService {
     private PermissionMapper permissionMapper;
 
     @Override
+    public EmallResponse<HealthDto> healthCheck(EmallRequest<Void> request) throws EmallException {
+        return EmallResponse.success(new HealthDto(appName, AppStatusEnum.RUNNING.name()));
+    }
+
+    @Override
     @Transactional
     public EmallResponse<UserInfoDto> register(EmallRequest<RegisterDto> request) {
         RegisterDto registerDto = request.getData();
@@ -51,6 +61,7 @@ public class EmallUserServiceImpl implements EmallUserService {
         user.setPhone(registerDto.getPhone());
         user.setEmail(registerDto.getEmail());
         userMapper.insert(user);
+        log.info("register succeed, user: {}", user);
         return EmallResponse.success(UserInfoDto.from(user));
     }
 
@@ -93,6 +104,7 @@ public class EmallUserServiceImpl implements EmallUserService {
         user.setLastLoginIp(loginDto.getIp());
         userMapper.updateById(user);
 
+        log.info("login succeed, user: {}", user);
         return EmallResponse.success(UserInfoDto.from(user));
     }
 
@@ -127,6 +139,21 @@ public class EmallUserServiceImpl implements EmallUserService {
         dto.setRoles(roles);
         dto.setPermissions(permissions);
         return EmallResponse.success(dto);
+    }
+
+    @Override
+    public EmallResponse<Void> changePassword(EmallRequest<ChangePasswordDto> request) throws EmallException {
+        ChangePasswordDto changePasswordDto = request.getData();
+        User user = userMapper.selectById(changePasswordDto.getUserId());
+        // 验证密码
+        if (!user.getPassword().equals(DigestUtil.md5Hex(changePasswordDto.getOldPassword()))) {
+            throw new InvalidParameterException("原始密码错误");
+        }
+        user.setPassword(DigestUtil.md5Hex(changePasswordDto.getNewPassword()));
+        userMapper.updateById(user);
+
+        log.info("changePassword succeed, userId: {}", changePasswordDto.getUserId());
+        return EmallResponse.success();
     }
 
     public static <T> List<T> selectByIds(List<? extends Serializable> ids, Function<List<? extends Serializable>, List<T>> selector) {

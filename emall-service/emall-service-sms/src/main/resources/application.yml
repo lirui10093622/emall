@@ -1,0 +1,48 @@
+server:
+  port: 8086
+
+spring:
+  application:
+    name: emall-service-sms
+  datasource:
+    url: jdbc:mysql://mysql.middleware.emall.docker:3306/sms-db?characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+    driverClassName: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initialSize: 1
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 30000
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      filters: stat,wall,slf4j
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+  redis:
+    host: redis.middleware.emall.docker
+    port: 6379
+    password:
+    database: 0
+  zipkin:
+    base-url: http://zipkin.middleware.emall.docker:9411
+  sleuth:
+    sampler:
+      probability: 1.0
+
+mybatis-plus:
+  type-aliases-package: org.emall.model.sms.model
+  mapper-locations: classpath:mapper/*.xml
+  global-config:
+    db-config:
+      table-prefix: t_
+
+dubbo:
+  registry:
+    address: zookeeper://zookeeper.middleware.emall.docker:2181

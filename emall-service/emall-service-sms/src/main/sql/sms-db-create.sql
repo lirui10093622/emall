@@ -1,0 +1,2 @@
+CREATE DATABASE IF NOT EXISTS `sms-db`;
+USE `sms-db`;

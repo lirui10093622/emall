@@ -1,16 +1,14 @@
 package org.emall.user.api;
 
+import org.emall.api.EmallService;
 import org.emall.common.exception.EmallException;
 import org.emall.common.exception.InvalidParameterException;
-import org.emall.user.model.User;
 import org.emall.common.request.EmallRequest;
 import org.emall.common.response.EmallResponse;
-import org.emall.user.api.dto.LoginDto;
-import org.emall.user.api.dto.RegisterDto;
-import org.emall.user.api.dto.RolesAndPermissionsDto;
-import org.emall.user.api.dto.UserInfoDto;
+import org.emall.user.api.dto.*;
+import org.emall.user.model.User;
 
-public interface EmallUserService {
+public interface EmallUserService extends EmallService {
 
     EmallResponse<UserInfoDto> register(EmallRequest<RegisterDto> request) throws EmallException;
 
@@ -19,4 +17,6 @@ public interface EmallUserService {
     EmallResponse<User> getUserInfo(EmallRequest<Long> request) throws InvalidParameterException;
 
     EmallResponse<RolesAndPermissionsDto> getRolesAndPermissions(EmallRequest<Long> request) throws EmallException;
+
+    EmallResponse<Void> changePassword(EmallRequest<ChangePasswordDto> request) throws EmallException;
 }

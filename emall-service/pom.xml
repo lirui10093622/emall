@@ -16,10 +16,12 @@
     </properties>
     <modules>
         <module>emall-service-facade</module>
-        <module>emall-service-user</module>
+        <module>emall-service-cart</module>
         <module>emall-service-order</module>
-        <module>emall-service-product</module>
         <module>emall-service-pay</module>
-        <module>emall-service-shoppingCart</module>
+        <module>emall-service-product</module>
+        <module>emall-service-search</module>
+        <module>emall-service-sms</module>
+        <module>emall-service-user</module>
     </modules>
 </project>

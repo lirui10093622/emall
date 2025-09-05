@@ -1,7 +1,7 @@
 package org.emall.facade.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
-import org.emall.user.api.dto.LoginInfo;
 import org.emall.common.enums.ApiResult;
 import org.emall.common.request.EmallRequest;
 import org.emall.common.response.EmallResponse;
@@ -14,6 +14,7 @@ import org.emall.facade.vo.UserInfoVo;
 import org.emall.facade.vo.UserInfoWithCredentialsVo;
 import org.emall.user.api.EmallUserService;
 import org.emall.user.api.dto.LoginDto;
+import org.emall.user.api.dto.LoginInfo;
 import org.emall.user.api.dto.RegisterDto;
 import org.emall.user.api.dto.UserInfoDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Date;
 
+@Slf4j
 @Auth(needLogin = false)
 @RestController
 @RequestMapping("api/user")
@@ -43,8 +45,10 @@ public class UserLoginController {
         registerDto.setPassword(registerVo.getPassword());
         registerDto.setPhone(registerVo.getPhone());
         registerDto.setEmail(registerVo.getEmail());
-        EmallResponse<UserInfoDto> response = emallUserService.register(new EmallRequest<>(registerDto));
-        return parse(response, httpServletRequest);
+        EmallResponse<UserInfoDto> registerResponse = emallUserService.register(new EmallRequest<>(registerDto));
+        EmallResponse<UserInfoWithCredentialsVo> response = parse(registerResponse, httpServletRequest);
+        log.info("register, isSuccess: {}, message: {}", response.isSuccess(), response.getMessage());
+        return response;
     }
 
     @RequestMapping("login")
@@ -55,8 +59,10 @@ public class UserLoginController {
         loginDto.setPassword(loginVo.getPassword());
         loginDto.setDevice(loginVo.getDevice());
         loginDto.setIp(httpServletRequest.getRemoteAddr());
-        EmallResponse<UserInfoDto> response = emallUserService.login(new EmallRequest<>(loginDto));
-        return parse(response, httpServletRequest);
+        EmallResponse<UserInfoDto> loginResponse = emallUserService.login(new EmallRequest<>(loginDto));
+        EmallResponse<UserInfoWithCredentialsVo> response = parse(loginResponse, httpServletRequest);
+        log.info("login, isSuccess: {}, message: {}", response.isSuccess(), response.getMessage());
+        return response;
     }
 
     EmallResponse<UserInfoWithCredentialsVo> parse(EmallResponse<UserInfoDto> response, HttpServletRequest httpServletRequest) {

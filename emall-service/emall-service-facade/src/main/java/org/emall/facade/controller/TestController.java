@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/test")
 public class TestController {
 
-    @RequestMapping("test")
-    public EmallResponse<Void> test() {
+    @RequestMapping("testMDC")
+    public EmallResponse<Void> testMDC() {
         MDC.put("rootTraceId", "0000");
         MDC.put("parentTraceId", "1111");
         MDC.put("traceId", "2222");
