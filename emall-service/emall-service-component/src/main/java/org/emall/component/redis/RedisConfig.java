@@ -1,4 +1,4 @@
-package org.emall.facade.redis;
+package org.emall.component.redis;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

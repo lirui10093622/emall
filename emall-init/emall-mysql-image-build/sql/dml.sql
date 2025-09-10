@@ -1,3 +1,5 @@
+/*!40101 SET NAMES utf8 */;
+
 USE `user-db`;
 
 insert into t_user(`id`, `name`, `password`, `create_user`)

@@ -1,25 +1,40 @@
-REM 创建网络
-docker network create emall-network
-
-REM 启动中间件容器
-docker run -d --rm --name mysql.middleware.emall.docker     --network emall-network -p 3306:3306 -p 33060:33060 -e MYSQL_ROOT_PASSWORD=root mysql:latest
-
-docker run -d --rm --name redis.middleware.emall.docker     --network emall-network -p 6379:6379 redis:latest
-
-docker run -d --rm --name zookeeper.middleware.emall.docker --network emall-network -p 2181:2181 ubuntu/zookeeper:latest
-
-docker run -d --rm --name zipkin.middleware.emall.docker --network emall-network -p 9410:9410 -p 9411:9411 openzipkin/zipkin:latest
-
-REM 构建应用镜像&启动应用容器
-ECHO 项目构建开始
-
 REM 项目路径
 set DRIVER=D:
 set EMALL_PROJECT_DIR=%DRIVER%\code\emall
+set EMALL_INIT_DIR=%EMALL_PROJECT_DIR%\emall-init
+set EMALL_MYSQL_IMAGE_BUILD_DIR=%EMALL_INIT_DIR%\emall-mysql-image-build
 set EMALL_SERVICE_DIR=%EMALL_PROJECT_DIR%\emall-service
+
+REM 创建网络
+set EMALL_NETWORK=emall-network
+docker network rm %EMALL_NETWORK%
+docker network create %EMALL_NETWORK%
 
 REM 切换磁盘
 %DRIVER%
+
+REM 中间件
+cd %EMALL_MYSQL_IMAGE_BUILD_DIR%
+
+docker stop mysql.middleware.emall.docker
+docker rmi mysql:mysql-emall
+docker build -t mysql:mysql-emall .
+docker run -d --rm --name mysql.middleware.emall.docker     --network emall-network -p 3306:3306 -p 33060:33060 -e MYSQL_ROOT_PASSWORD=root -e TZ=Asia/Shanghai mysql:mysql-emall
+
+docker stop redis.middleware.emall.docker
+docker rmi redis.middleware.emall.docker
+docker run -d --rm --name redis.middleware.emall.docker     --network emall-network -p 6379:6379 redis:latest
+
+docker stop zookeeper.middleware.emall.docker
+docker rmi zookeeper.middleware.emall.docker
+docker run -d --rm --name zookeeper.middleware.emall.docker --network emall-network -p 2181:2181 ubuntu/zookeeper:latest
+
+docker stop zipkin.middleware.emall.docker
+docker rmi zipkin.middleware.emall.docker
+docker run -d --rm --name zipkin.middleware.emall.docker --network emall-network -p 9410:9410 -p 9411:9411 openzipkin/zipkin:latest
+
+REM 应用服务
+ECHO 项目构建开始
 
 cd %EMALL_SERVICE_DIR%\emall-service-cart
 docker stop emall-service-cart

@@ -1,3 +1,5 @@
+/*!40101 SET NAMES utf8 */;
+
 CREATE DATABASE IF NOT EXISTS `cart-db`;
 USE `cart-db`;
 
