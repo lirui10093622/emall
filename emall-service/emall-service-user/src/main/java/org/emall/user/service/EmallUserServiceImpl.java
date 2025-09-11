@@ -11,8 +11,10 @@ import org.emall.common.enums.ApiResult;
 import org.emall.common.enums.AppStatusEnum;
 import org.emall.common.exception.EmallException;
 import org.emall.common.exception.InvalidParameterException;
+import org.emall.common.paradigm.CacheParadigm;
 import org.emall.common.request.EmallRequest;
 import org.emall.common.response.EmallResponse;
+import org.emall.component.cache.CacheManager;
 import org.emall.user.api.EmallUserService;
 import org.emall.user.api.dto.*;
 import org.emall.user.api.enums.AccountType;
@@ -27,8 +29,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
+
+import static org.emall.user.constant.RedisKeys.REDIS_KEY_USER_ROLES_AND_PERMISSIONS;
 
 @Slf4j
 @DubboService
@@ -45,6 +51,8 @@ public class EmallUserServiceImpl implements EmallUserService {
     private RolePermissionMapper rolePermissionMapper;
     @Autowired
     private PermissionMapper permissionMapper;
+    @Autowired
+    private CacheManager cacheManager;
 
     @Override
     public EmallResponse<HealthDto> healthCheck(EmallRequest<Void> request) throws EmallException {
@@ -123,22 +131,28 @@ public class EmallUserServiceImpl implements EmallUserService {
 
     @Override
     public EmallResponse<RolesAndPermissionsDto> getRolesAndPermissions(EmallRequest<Long> request) {
-        List<Long> roleIds = userRoleMapper.selectList(new QueryWrapper<UserRole>().lambda()
-                        .eq(UserRole::getUserId, request.getData()))
-                .stream().map(UserRole::getRoleId).collect(Collectors.toList());
-        List<Role> roles = selectByIds(roleIds, roleMapper::selectByIds);
+        Long userId = request.getData();
+        Supplier<RolesAndPermissionsDto> cacheGetter = () -> cacheManager.read(String.format(REDIS_KEY_USER_ROLES_AND_PERMISSIONS, userId), RolesAndPermissionsDto.class);
+        Supplier<RolesAndPermissionsDto> actuallySupplier = () -> {
+            List<Long> roleIds = userRoleMapper.selectList(new QueryWrapper<UserRole>().lambda()
+                            .eq(UserRole::getUserId, userId))
+                    .stream().map(UserRole::getRoleId).collect(Collectors.toList());
+            List<Role> roles = selectByIds(roleIds, roleMapper::selectByIds);
 
-        List<Long> permissionIds = new ArrayList<>();
-        if (CollectionUtils.isNotEmpty(roleIds)) {
-            permissionIds = rolePermissionMapper.selectList(new QueryWrapper<RolePermission>().lambda().in(RolePermission::getRoleId, roleIds))
-                    .stream().map(RolePermission::getPermissionId).collect(Collectors.toList());
-        }
-        List<Permission> permissions = selectByIds(permissionIds, permissionMapper::selectByIds);
+            List<Long> permissionIds = new ArrayList<>();
+            if (CollectionUtils.isNotEmpty(roleIds)) {
+                permissionIds = rolePermissionMapper.selectList(new QueryWrapper<RolePermission>().lambda().in(RolePermission::getRoleId, roleIds))
+                        .stream().map(RolePermission::getPermissionId).collect(Collectors.toList());
+            }
+            List<Permission> permissions = selectByIds(permissionIds, permissionMapper::selectByIds);
 
-        RolesAndPermissionsDto dto = new RolesAndPermissionsDto();
-        dto.setRoles(roles);
-        dto.setPermissions(permissions);
-        return EmallResponse.success(dto);
+            RolesAndPermissionsDto dto = new RolesAndPermissionsDto();
+            dto.setRoles(roles);
+            dto.setPermissions(permissions);
+            return dto;
+        };
+        Consumer<RolesAndPermissionsDto> cacheSaver = (dto) -> cacheManager.write(String.format(REDIS_KEY_USER_ROLES_AND_PERMISSIONS, userId), dto);
+        return EmallResponse.success(CacheParadigm.access(cacheGetter, actuallySupplier, cacheSaver));
     }
 
     @Override

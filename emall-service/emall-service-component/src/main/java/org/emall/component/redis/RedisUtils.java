@@ -1,14 +1,10 @@
 package org.emall.component.redis;
 
-import com.alibaba.fastjson.JSON;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.function.Function;
 
 /**
  * @author Li Rui
@@ -23,21 +19,6 @@ public class RedisUtils {
         return stringRedisTemplate.opsForValue().get(key);
     }
 
-    public <T> List<T> getList(String key, Class<T> clazz) {
-        Function<String, List<T>> mapper = (str) -> StringUtils.isNotBlank(str) ? JSON.parseArray(str, clazz) : null;
-        return get(key, mapper);
-    }
-
-    public <T> T getObject(String key, Class<? extends T> clazz) {
-        Function<String, T> mapper = (str) -> StringUtils.isNotBlank(str) ? JSON.parseObject(str, clazz) : null;
-        return get(key, mapper);
-    }
-
-    public <T> T get(String key, Function<String, T> mapper) {
-        String value = stringRedisTemplate.opsForValue().get(key);
-        return mapper.apply(value);
-    }
-
     public Boolean hasKey(String key) {
         return stringRedisTemplate.hasKey(key);
     }
@@ -46,18 +27,8 @@ public class RedisUtils {
         stringRedisTemplate.opsForValue().set(key, value);
     }
 
-    public <T> void set(String key, T value, Function<T, String> mapper) {
-        String str = mapper.apply(value);
-        stringRedisTemplate.opsForValue().set(key, str);
-    }
-
     public void set(String key, String value, long timeout, TimeUnit timeUnit) {
         stringRedisTemplate.opsForValue().set(key, value, timeout, timeUnit);
-    }
-
-    public <T> void set(String key, T value, Function<T, String> mapper, long timeout, TimeUnit timeUnit) {
-        String str = mapper.apply(value);
-        stringRedisTemplate.opsForValue().set(key, str, timeout, timeUnit);
     }
 
     public void setIfAbsent(String key, String value, long timeout, TimeUnit timeUnit) {
