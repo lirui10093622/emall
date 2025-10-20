@@ -12,10 +12,14 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Button: typeof import('vue-amazing-ui')['Button']
+    Divider: typeof import('vue-amazing-ui')['Divider']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     InputSearch: typeof import('vue-amazing-ui')['InputSearch']
     Search: typeof import('./src/components/Search.vue')['default']
+    SearchPage: typeof import('./src/components/SearchPage.vue')['default']
     Space: typeof import('vue-amazing-ui')['Space']
+    Table: typeof import('vue-amazing-ui')['Table']
+    TableTemplate: typeof import('./src/components/TableTemplate.vue')['default']
     Tag: typeof import('vue-amazing-ui')['Tag']
   }
 }

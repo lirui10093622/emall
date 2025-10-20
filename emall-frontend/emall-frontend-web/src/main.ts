@@ -4,6 +4,5 @@ import './style.css'
 
 // createApp(App).mount('#app')
 
-
-import Search from './components/Search.vue'
-createApp(Search).mount('#app')
+import SearchPage from './components/SearchPage.vue'
+createApp(SearchPage).mount('#app')
