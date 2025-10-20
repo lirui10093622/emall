@@ -17,6 +17,7 @@
     <modules>
         <module>emall-service-component</module>
         <module>emall-service-cart</module>
+        <module>emall-service-comment</module>
         <module>emall-service-order</module>
         <module>emall-service-pay</module>
         <module>emall-service-product</module>

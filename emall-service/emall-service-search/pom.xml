@@ -18,6 +18,7 @@
         <spring.boot.version>2.3.2.RELEASE</spring.boot.version>
         <spring.cloud.version>Hoxton.SR7</spring.cloud.version>
         <maven.compiler.version>3.14.0</maven.compiler.version>
+        <elasticsearch.version>7.17.5</elasticsearch.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -62,6 +63,10 @@
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-redis</artifactId>
         </dependency>
@@ -98,6 +103,11 @@
         </dependency>
         <!-- spring boot第三方jar包 -->
 
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>elasticsearch-rest-high-level-client</artifactId>
+            <version>${elasticsearch.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

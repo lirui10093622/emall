@@ -16,24 +16,26 @@ REM 切换磁盘
 REM 中间件
 cd %EMALL_MYSQL_IMAGE_BUILD_DIR%
 
-docker stop mysql.middleware.emall.docker
-docker rmi emall-middleware-mysql
-docker build -t emall-middleware-mysql .
-docker run -d --rm --name mysql.middleware.emall.docker      --network emall-network -p 3306:3306 -p 33060:33060 -e MYSQL_ROOT_PASSWORD=root -e TZ=Asia/Shanghai emall-middleware-mysql
+REM docker stop mysql.middleware.emall.docker
+REM docker rmi emall-middleware-mysql
+REM docker build -t emall-middleware-mysql .
+docker run -d --name mysql.middleware.emall.docker --network emall-network -p 3306:3306 -p 33060:33060 -e MYSQL_ROOT_PASSWORD=root -e TZ=Asia/Shanghai emall-middleware-mysql
 
-docker stop redis.middleware.emall.docker
-docker rmi redis.middleware.emall.docker
-docker run -d --rm --name redis.middleware.emall.docker      --network emall-network -p 6379:6379 redis:latest
+REM docker stop zookeeper.middleware.emall.docker
+REM docker rmi zookeeper.middleware.emall.docker
+docker run -d --name zookeeper.middleware.emall.docker --network emall-network -p 2181:2181 ubuntu/zookeeper:latest
 
-docker stop zookeeper.middleware.emall.docker
-docker rmi zookeeper.middleware.emall.docker
-docker run -d --rm --name zookeeper.middleware.emall.docker  --network emall-network -p 2181:2181 ubuntu/zookeeper:latest
+REM docker stop redis.middleware.emall.docker
+REM docker rmi redis.middleware.emall.docker
+docker run -d --name redis.middleware.emall.docker --network emall-network -p 6379:6379 redis:latest
 
-docker run -d --name zipkin.middleware.emall.docker     --network emall-network -p 9410:9410 -p 9411:9411 openzipkin/zipkin:latest
+docker run -d --name es.middleware.emall.docker -p 9200:9200 -p 9300:9300 -e discovery.type=single-node -e xpack.security.enabled=false -v D:/deploy/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml -v D:/deploy/elasticsearch/data:/usr/share/elasticsearch/data -v D:/deploy/elasticsearch/plugins:/usr/share/elasticsearch/plugins -d elasticsearch:9.1.3
 
-docker run -d --name es.middleware.emall.docker     --network emall-network -p 9200:9200 -p 9300:9300 elasticsearch:9.1.3
+docker run -d --name elasticsearch-head -p 9100:9100 mobz/elasticsearch-head:5
 
-docker run -d --name kibana.middleware.emall.docker     --network emall-network -p 5601:5601 kibana:9.1.3
+docker run -d --name kibana.middleware.emall.docker --network emall-network -p 5601:5601 -e ELASTICSEARCH_HOSTS=http://es.middleware.emall.docker:9200 -e xpack.security.enabled=false kibana:9.1.3
+
+docker run -d --name zipkin.middleware.emall.docker --network emall-network -p 9410:9410 -p 9411:9411 openzipkin/zipkin:latest
 
 REM 应用服务
 ECHO 项目构建开始
@@ -43,6 +45,12 @@ docker stop emall-service-cart
 docker rmi emall-service-cart:1.0.0
 docker build -t emall-service-cart:1.0.0 .
 docker run -d --rm --name emall-service-cart --network emall-network -p 8085:8085 emall-service-cart:1.0.0
+
+cd %EMALL_SERVICE_DIR%\emall-service-comment
+docker stop emall-service-comment
+docker rmi emall-service-comment:1.0.0
+docker build -t emall-service-comment:1.0.0 .
+docker run -d --rm --name emall-service-comment --network emall-network -p 8085:8085 emall-service-comment:1.0.0
 
 cd %EMALL_SERVICE_DIR%\emall-service-order
 docker stop emall-service-order
