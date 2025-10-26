@@ -9,23 +9,16 @@
     class="demo-ruleForm"
   >
     <el-form-item label="登录名" prop="loginName">
-      <el-input v-model.number="ruleForm.age" />
+      <el-input v-model="ruleForm.loginName" />
     </el-form-item>
-    <el-form-item label="Password" prop="pass">
-      <el-input v-model="ruleForm.pass" type="password" autocomplete="off" />
-    </el-form-item>
-    <el-form-item label="Confirm" prop="checkPass">
-      <el-input
-        v-model="ruleForm.checkPass"
-        type="password"
-        autocomplete="off"
-      />
+    <el-form-item label="密码" prop="password">
+      <el-input v-model="ruleForm.password" type="password" autocomplete="off" />
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="submitForm(ruleFormRef)">
-        Submit
+        提交
       </el-button>
-      <el-button @click="resetForm(ruleFormRef)">Reset</el-button>
+      <el-button @click="resetForm(ruleFormRef)">重置</el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -35,63 +28,52 @@ import { reactive, ref } from 'vue'
 
 import type { FormInstance, FormRules } from 'element-plus'
 
+import axios, { Axios } from 'axios'
+
+
 const ruleFormRef = ref<FormInstance>()
 
-const checkAge = (rule: any, value: any, callback: any) => {
+const checkLoginName = (rule: any, value: any, callback: any) => {
   if (!value) {
-    return callback(new Error('Please input the age'))
+    return callback(new Error('请输入登录名'))
   }
-  setTimeout(() => {
-    if (!Number.isInteger(value)) {
-      callback(new Error('Please input digits'))
-    } else {
-      if (value < 18) {
-        callback(new Error('Age must be greater than 18'))
-      } else {
-        callback()
-      }
-    }
-  }, 1000)
+  callback()
 }
 
-const validatePass = (rule: any, value: any, callback: any) => {
+const validatePassword = (rule: any, value: any, callback: any) => {
   if (value === '') {
-    callback(new Error('Please input the password'))
+    callback(new Error('请输入密码'))
   } else {
-    if (ruleForm.checkPass !== '') {
+    if (ruleForm.password !== '') {
       if (!ruleFormRef.value) return
-      ruleFormRef.value.validateField('checkPass')
+      ruleFormRef.value.validateField('validatePassword')
     }
-    callback()
-  }
-}
-const validatePass2 = (rule: any, value: any, callback: any) => {
-  if (value === '') {
-    callback(new Error('Please input the password again'))
-  } else if (value !== ruleForm.pass) {
-    callback(new Error("Two inputs don't match!"))
-  } else {
     callback()
   }
 }
 
 const ruleForm = reactive({
-  age: '',
-  pass: '',
-  checkPass: '',
+  loginName: '',
+  password: '',
 })
 
 const rules = reactive<FormRules<typeof ruleForm>>({
-  pass: [{ validator: validatePass, trigger: 'blur' }],
-  checkPass: [{ validator: validatePass2, trigger: 'blur' }],
-  age: [{ validator: checkAge, trigger: 'blur' }],
+  loginName: [{ validator: checkLoginName, trigger: 'blur' }],
+  password: [{ validator: validatePassword, trigger: 'blur' }],
 })
+
+axios.defaults.baseURL = 'http://localhost:80'
+axios.defaults.headers.post['Content-Type'] = 'application/json'
+axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*'
 
 const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   formEl.validate((valid) => {
     if (valid) {
       console.log('submit!')
+      axios.post('/api/mock/login', ruleForm).then((res) => {
+        console.log(res)
+      })
     } else {
       console.log('error submit!')
     }

@@ -14,4 +14,4 @@ import CustomMenu from './menu/CustomMenu.vue'
 // createApp(App).mount('#app')
 
 
-createApp(CustomMenu).use(ElementPlus).mount('#app')
+createApp(Login).use(ElementPlus).mount('#app')
