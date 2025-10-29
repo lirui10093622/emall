@@ -4,14 +4,21 @@ import { createApp } from 'vue'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 
-import Buttons from './buttons/Buttons.vue'
 import App from './App.vue'
 import ContainerLayout from './layout/ContainerLayout.vue'
-import Login from './login/Login.vue'
 import DefaultMenu from './menu/DefaultMenu.vue'
 import CustomMenu from './menu/CustomMenu.vue'
+import RouterTest from './router/RouterTest.vue'
+
+import VueAmazingUI from 'vue-amazing-ui'
+// import 'vue-amazing-ui/css'
+
+
+import { createMemoryHistory, createRouter } from 'vue-router'
+
+import router from './router'
 
 // createApp(App).mount('#app')
 
 
-createApp(Login).use(ElementPlus).mount('#app')
+createApp(ContainerLayout).use(ElementPlus).use(VueAmazingUI).use(router).mount('#app')

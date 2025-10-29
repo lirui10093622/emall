@@ -15,6 +15,8 @@ declare module 'vue' {
     Divider: typeof import('vue-amazing-ui')['Divider']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     InputSearch: typeof import('vue-amazing-ui')['InputSearch']
+    RouterLink: typeof import('vue-router')['RouterLink']
+    RouterView: typeof import('vue-router')['RouterView']
     Search: typeof import('./src/components/Search.vue')['default']
     SearchPage: typeof import('./src/components/SearchPage.vue')['default']
     Space: typeof import('vue-amazing-ui')['Space']
