@@ -1,4 +1,4 @@
-package org.emall.component.redis;
+package org.emall.component.redis.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -12,7 +12,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 public class RedisConfig {
 
     @Value("${spring.redis.host}")
-    private String redisHost;
+    private String host;
 
     @Value("${spring.redis.port}")
     private int port;
@@ -26,7 +26,7 @@ public class RedisConfig {
     @Bean
     public RedisConnectionFactory redisConnectionFactory() {
         RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration();
-        configuration.setHostName(redisHost);
+        configuration.setHostName(host);
         configuration.setPort(port);
         configuration.setPassword(password);
         configuration.setDatabase(database);

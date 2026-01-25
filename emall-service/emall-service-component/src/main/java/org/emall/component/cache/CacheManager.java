@@ -1,7 +1,7 @@
 package org.emall.component.cache;
 
 import org.emall.common.serialization.Serialization;
-import org.emall.component.redis.RedisUtils;
+import org.emall.component.redis.utils.RedisValueUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,14 +16,14 @@ import java.util.function.Function;
 @Component
 public class CacheManager {
     @Autowired
-    private RedisUtils redisUtils;
+    private RedisValueUtils redisValueUtils;
 
     public <T> T read(String key, Type type) {
         return read(key, (sting) -> Serialization.deserialize(sting, type));
     }
 
     public <T> T read(String key, Function<String, T> mapper) {
-        String value = redisUtils.get(key);
+        String value = redisValueUtils.get(key);
         return mapper.apply(value);
     }
 
@@ -38,9 +38,9 @@ public class CacheManager {
     public <T> void write(String key, T value, Function<T, String> mapper, long timeout, TimeUnit timeUnit) {
         String str = mapper.apply(value);
         if (timeout <= 0 || timeUnit == null) {
-            redisUtils.set(key, str);
+            redisValueUtils.set(key, str);
         } else {
-            redisUtils.set(key, str, timeout, timeUnit);
+            redisValueUtils.set(key, str, timeout, timeUnit);
         }
     }
 }

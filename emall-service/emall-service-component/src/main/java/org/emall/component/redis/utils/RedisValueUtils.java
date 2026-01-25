@@ -1,5 +1,6 @@
-package org.emall.component.redis;
+package org.emall.component.redis.utils;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
@@ -8,21 +9,20 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author Li Rui
- * @date 2025-09-09
+ * @date 2026-01-15
  */
+@Slf4j
 @Component
-public class RedisUtils {
+public class RedisValueUtils {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
+    //********** 读 **********//
     public String get(String key) {
         return stringRedisTemplate.opsForValue().get(key);
     }
 
-    public Boolean hasKey(String key) {
-        return stringRedisTemplate.hasKey(key);
-    }
-
+    //********** 写 **********//
     public void set(String key, String value) {
         stringRedisTemplate.opsForValue().set(key, value);
     }
@@ -33,14 +33,6 @@ public class RedisUtils {
 
     public void setIfAbsent(String key, String value, long timeout, TimeUnit timeUnit) {
         stringRedisTemplate.opsForValue().setIfAbsent(key, value, timeout, timeUnit);
-    }
-
-    public Boolean delete(String key) {
-        return stringRedisTemplate.delete(key);
-    }
-
-    public Boolean expire(String key, long timeout, TimeUnit timeUnit) {
-        return stringRedisTemplate.expire(key, timeout, timeUnit);
     }
 
     public Long increment(String key) {

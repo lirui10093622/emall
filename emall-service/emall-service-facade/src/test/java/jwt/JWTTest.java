@@ -2,9 +2,9 @@ package jwt;
 
 import com.alibaba.fastjson.JSONObject;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import org.emall.user.api.dto.LoginInfo;
 import org.emall.facade.config.JWTConfig;
 import org.emall.facade.support.JWTSupport;
+import org.emall.user.api.dto.LoginInfo;
 import org.emall.user.api.dto.UserInfoDto;
 import org.junit.jupiter.api.Test;
 

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.emall.search.model.SearchHotWord;
+
 import java.time.LocalDate;
 import java.util.List;
 
