@@ -1,6 +1,6 @@
-package org.emall.api;
+package org.emall.common.api;
 
-import org.emall.api.dto.HealthDto;
+import org.emall.common.api.dto.HealthDto;
 import org.emall.common.exception.EmallException;
 import org.emall.common.request.EmallRequest;
 import org.emall.common.response.EmallResponse;

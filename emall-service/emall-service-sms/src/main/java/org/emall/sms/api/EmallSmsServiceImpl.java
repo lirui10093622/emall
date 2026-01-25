@@ -2,7 +2,7 @@ package org.emall.sms.api;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;
-import org.emall.api.dto.HealthDto;
+import org.emall.common.api.dto.HealthDto;
 import org.emall.common.enums.AppStatusEnum;
 import org.emall.common.exception.EmallException;
 import org.emall.common.request.EmallRequest;

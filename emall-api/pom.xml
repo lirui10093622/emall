@@ -3,19 +3,23 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.emall</groupId>
+    <parent>
+        <groupId>org.emall</groupId>
+        <artifactId>emall-super-pom</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../emall-super-pom/pom.xml</relativePath>
+    </parent>
     <artifactId>emall-api</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <properties>
-        <java.version>1.8</java.version>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.emall</groupId>
+            <artifactId>emall-common</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
     <modules>
-        <module>emall-api-base</module>
         <module>emall-api-cart</module>
         <module>emall-api-comment</module>
         <module>emall-api-order</module>

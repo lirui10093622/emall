@@ -1,6 +1,6 @@
 package org.emall.sms.api;
 
-import org.emall.api.EmallService;
+import org.emall.common.api.EmallService;
 import org.emall.common.exception.EmallException;
 import org.emall.common.request.EmallRequest;
 import org.emall.common.response.EmallResponse;

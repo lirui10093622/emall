@@ -1,6 +1,6 @@
 package org.emall.pay.api;
 
-import org.emall.api.EmallService;
+import org.emall.common.api.EmallService;
 
 /**
  * @author Li Rui

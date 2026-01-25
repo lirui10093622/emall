@@ -7,12 +7,9 @@
     <version>1.0.0-SNAPSHOT</version>
     <name>emall</name>
     <description>电商系统</description>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-    </properties>
     <modules>
+        <module>emall-dependencies</module>
+        <module>emall-super-pom</module>
         <module>emall-common</module>
         <module>emall-api</module>
         <module>emall-service</module>

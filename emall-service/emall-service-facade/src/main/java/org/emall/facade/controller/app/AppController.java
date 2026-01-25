@@ -2,9 +2,9 @@ package org.emall.facade.controller.app;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
-import org.emall.api.EmallService;
-import org.emall.api.dto.HealthDto;
 import org.emall.cart.api.EmallCartService;
+import org.emall.common.api.EmallService;
+import org.emall.common.api.dto.HealthDto;
 import org.emall.common.request.EmallRequest;
 import org.emall.common.response.EmallResponse;
 import org.emall.facade.vo.HealthVO;

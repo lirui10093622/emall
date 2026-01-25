@@ -1,7 +1,7 @@
 package org.emall.facade.vo;
 
 import lombok.Data;
-import org.emall.api.dto.HealthDto;
+import org.emall.common.api.dto.HealthDto;
 
 import java.io.Serializable;
 

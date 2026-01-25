@@ -1,4 +1,4 @@
-package org.emall.api.dto;
+package org.emall.common.api.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,6 +1,6 @@
 package org.emall.user.api;
 
-import org.emall.api.EmallService;
+import org.emall.common.api.EmallService;
 import org.emall.common.exception.EmallException;
 import org.emall.common.exception.InvalidParameterException;
 import org.emall.common.request.EmallRequest;
