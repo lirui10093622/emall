@@ -1,7 +1,6 @@
 package org.emall.search.dto;
 
 import lombok.Data;
-import org.emall.search.vo.ProductVO;
 
 import java.io.Serializable;
 import java.util.List;
@@ -17,7 +16,7 @@ public class SearchProductResult implements Serializable {
     
     private Long total;                      // 总记录数
     private Integer pages;                   // 总页数
-    private List<ProductVO> productList; // 商品列表
+    private List<ProductSearchPageVO> productList; // 商品列表
     private Map<String, List<FilterItemVO>> filterParams; // 筛选参数（如价格区间、品牌）
     private String correctionSuggestion;     // 搜索纠错建议（如"手机"纠正为"华为手机"）
 }

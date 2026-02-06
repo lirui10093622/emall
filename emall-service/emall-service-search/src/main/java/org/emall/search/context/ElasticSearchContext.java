@@ -9,6 +9,6 @@ import java.io.Serializable;
  * @date 2026-01-29
  */
 @Data
-public class SearchProductPageContext implements Serializable {
+public class ElasticSearchContext implements Serializable {
 
 }

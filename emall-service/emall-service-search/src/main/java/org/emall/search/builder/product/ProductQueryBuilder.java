@@ -7,7 +7,7 @@ import com.google.common.collect.Lists;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.emall.search.enums.KeywordOperatorEnum;
-import org.emall.search.param.SearchProductPageParam;
+import org.emall.search.dto.ProductSearchPageParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ import static org.emall.search.builder.BaseQueryBuilder.*;
  */
 public class ProductQueryBuilder {
 
-    public static List<Query> filters(SearchProductPageParam param) {
+    public static List<Query> filters(ProductSearchPageParam param) {
         List<Query> filters = new ArrayList<>();
 
         if (Objects.nonNull(param.getUserId())) {
@@ -42,7 +42,7 @@ public class ProductQueryBuilder {
         return filters;
     }
 
-    public static List<Query> queries(SearchProductPageParam param) {
+    public static List<Query> queries(ProductSearchPageParam param) {
         if (param.isKeywordSegmented()) {
             return buildKeywordQueries(true, param.getKeywordOperator(), param.getKeywords());
         }

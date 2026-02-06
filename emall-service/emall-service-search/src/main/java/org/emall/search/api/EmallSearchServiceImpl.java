@@ -8,11 +8,11 @@ import org.emall.common.enums.AppStatusEnum;
 import org.emall.common.exception.EmallException;
 import org.emall.common.request.EmallRequest;
 import org.emall.common.response.EmallResponse;
-import org.emall.search.param.SearchProductPageParam;
+import org.emall.search.dto.ProductSearchPageParam;
 import org.emall.search.service.ProductElasticSearchQueryService;
 import org.emall.search.service.SearchHistoryService;
 import org.emall.search.service.SearchSuggestService;
-import org.emall.search.vo.ProductVO;
+import org.emall.search.dto.ProductSearchPageVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -38,7 +38,7 @@ public class EmallSearchServiceImpl implements EmallSearchService {
     }
 
     @Override
-    public EmallResponse<IPage<ProductVO>> searchProductPage(EmallRequest<SearchProductPageParam> request) throws EmallException {
-        return EmallResponse.success(searchProductService.search(request.getData()));
+    public EmallResponse<IPage<ProductSearchPageVO>> searchProductPage(EmallRequest<ProductSearchPageParam> request) throws EmallException {
+        return EmallResponse.success(searchProductService.searchPage(request.getData()));
     }
 }

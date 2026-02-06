@@ -1,4 +1,4 @@
-package org.emall.search.param;
+package org.emall.search.dto;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -11,7 +11,7 @@ import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class SearchProductPageParam extends PageParam {
+public class ProductSearchPageParam extends PageParam {
     private LoginUser loginUser;
     private boolean keywordSegmented;
     private KeywordOperatorEnum keywordOperator;

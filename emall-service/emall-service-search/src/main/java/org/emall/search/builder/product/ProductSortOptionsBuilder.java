@@ -6,7 +6,7 @@ import co.elastic.clients.elasticsearch._types.SortOrder;
 import com.google.common.collect.Lists;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.emall.search.param.SearchProductPageParam;
+import org.emall.search.dto.ProductSearchPageParam;
 import org.emall.user.api.dto.LoginUser;
 
 import java.util.List;
@@ -19,7 +19,7 @@ import static org.emall.search.builder.product.ProductScriptBuilder.curStageOper
  */
 public class ProductSortOptionsBuilder {
 
-    public static List<SortOptions> sorters(SearchProductPageParam param) {
+    public static List<SortOptions> sorters(ProductSearchPageParam param) {
         List<SortOptions> sortList = Lists.newArrayList();
         if (hasKeyword(param.getKeywords())) {
             sortList.add(SortOptions.of(a -> a.field(b -> b.field("_score").order(SortOrder.Desc))));

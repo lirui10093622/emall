@@ -4,8 +4,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.emall.common.api.EmallService;
 import org.emall.common.request.EmallRequest;
 import org.emall.common.response.EmallResponse;
-import org.emall.search.param.SearchProductPageParam;
-import org.emall.search.vo.ProductVO;
+import org.emall.search.dto.ProductSearchPageParam;
+import org.emall.search.dto.ProductSearchPageVO;
 
 /**
  * @author Li Rui
@@ -13,5 +13,5 @@ import org.emall.search.vo.ProductVO;
  */
 public interface EmallSearchService extends EmallService {
 
-    EmallResponse<IPage<ProductVO>> searchProductPage(EmallRequest<SearchProductPageParam> request);
+    EmallResponse<IPage<ProductSearchPageVO>> searchProductPage(EmallRequest<ProductSearchPageParam> request);
 }

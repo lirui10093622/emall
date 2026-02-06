@@ -1,4 +1,4 @@
-package org.emall.search.vo;
+package org.emall.search.dto;
 
 import lombok.Data;
 
@@ -10,7 +10,7 @@ import java.math.BigDecimal;
  * 用于前端展示商品搜索结果中的单个商品信息
  */
 @Data
-public class ProductVO implements Serializable {
+public class ProductSearchPageVO implements Serializable {
     private Long id;
     private String productName;
     private String brandName;
