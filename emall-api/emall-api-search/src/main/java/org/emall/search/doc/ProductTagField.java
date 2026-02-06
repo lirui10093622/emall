@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @date 2025-09-28
  */
 @Data
-public class ProductAttributeField implements Serializable {
+public class ProductTagField implements Serializable {
     @Field(type = FieldType.Long)
     private Long id;
 

@@ -19,6 +19,16 @@
             <artifactId>emall-api-search</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>org.emall</groupId>
+            <artifactId>emall-api-user</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.emall</groupId>
+            <artifactId>emall-service-component</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
         <!-- 项目内部的jar包 -->
 
         <!-- spring boot官方jar包 -->
@@ -80,10 +90,14 @@
         </dependency>
         <!-- spring boot第三方jar包 -->
 
+        <!--<dependency>
+            <groupId>co.elastic.clients</groupId>
+            <artifactId>elasticsearch-java</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.elasticsearch.client</groupId>
             <artifactId>elasticsearch-rest-high-level-client</artifactId>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

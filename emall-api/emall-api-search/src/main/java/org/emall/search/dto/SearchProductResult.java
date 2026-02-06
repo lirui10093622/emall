@@ -1,6 +1,8 @@
 package org.emall.search.dto;
 
 import lombok.Data;
+import org.emall.search.vo.ProductVO;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;

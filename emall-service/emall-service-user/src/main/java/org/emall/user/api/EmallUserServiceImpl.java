@@ -14,7 +14,7 @@ import org.emall.common.exception.InvalidParameterException;
 import org.emall.common.paradigm.CacheParadigm;
 import org.emall.common.request.EmallRequest;
 import org.emall.common.response.EmallResponse;
-import org.emall.component.cache.CacheManager;
+import org.emall.component.cache.distributed.DistributedCacheManager;
 import org.emall.user.api.dto.*;
 import org.emall.user.api.enums.AccountType;
 import org.emall.user.mapper.*;
@@ -51,7 +51,7 @@ public class EmallUserServiceImpl implements EmallUserService {
     @Autowired
     private PermissionMapper permissionMapper;
     @Autowired
-    private CacheManager cacheManager;
+    private DistributedCacheManager cacheManager;
 
     @Override
     public EmallResponse<HealthDto> healthCheck(EmallRequest<Void> request) throws EmallException {

@@ -12,7 +12,7 @@ import java.util.List;
 @SpringBootTest
 class SearchCoreServiceTest {
     @Autowired
-    private SearchCoreService searchCoreService;
+    private ProductElasticSearchQueryService searchCoreService;
 
     @Test
     void sync() {

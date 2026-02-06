@@ -30,9 +30,16 @@
         <commons.collections.version>3.2.2</commons.collections.version>
         <java.jwt.version>4.4.0</java.jwt.version>
         <kaptcha.version>2.3.2</kaptcha.version>
+        <elasticsearch.java.version>8.10.3</elasticsearch.java.version>
+        <mybatis.plus.extensions.version>3.5.2</mybatis.plus.extensions.version>
     </properties>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>co.elastic.clients</groupId>
+                <artifactId>elasticsearch-java</artifactId>
+                <version>${elasticsearch.java.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo-spring-boot-starter</artifactId>
@@ -132,6 +139,11 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-annotation</artifactId>
                 <version>${mybatis.plus.annotations.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-extension</artifactId>
+                <version>${mybatis.plus.extensions.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.flywaydb</groupId>
