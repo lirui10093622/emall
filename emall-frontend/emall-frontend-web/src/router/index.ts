@@ -1,29 +1,21 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import HomeView from '../view/HomeView.vue'
-import AboutView from '../view/AboutView.vue'
-
-const routes = [
+const constantRoutes = [
   {
-    path: '/',
-    name: 'Home',
-    component: HomeView
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: AboutView
+    path: '/login',
+    name: 'Login',
+    component: () => import('../Login.vue')
   }
 ]
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes: constantRoutes,
 })
 
-router.beforeEach((to, from, next) => {
-  // console.log(to, from)
-  next()
-});
+// 添加调试代码，检查路由变化
+router.beforeEach((to, from) => {
+  console.log('URL 变化:', from.path, '->', to.path)
+})
 
 export default router
