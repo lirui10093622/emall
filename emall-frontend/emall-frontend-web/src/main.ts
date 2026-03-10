@@ -4,4 +4,4 @@ import ElementPlus from 'element-plus'
 import VueAmazingUI from 'vue-amazing-ui'
 import router from './router'
 
-createApp(App).use(ElementPlus).use(VueAmazingUI).use(router).mount('#app');
+createApp(App).use(ElementPlus).use(VueAmazingUI).use(router).mount('#app')
