@@ -24,7 +24,7 @@ public class ProductSortOptionsBuilder {
         if (hasKeyword(param.getKeywords())) {
             sortList.add(SortOptions.of(a -> a.field(b -> b.field("_score").order(SortOrder.Desc))));
         } else {
-            sortList.add(sortByIsCurStageOperator(param.getLoginUser().getId()));
+            sortList.add(sortByIsCurStageOperator(param.getLoginUser()));
         }
         sortList.add(SortOptions.of(a -> a.field(b -> b.field("id").order(SortOrder.Desc))));
         sortList.add(SortOptions.of(a -> a.field(b -> b.field("_doc").order(SortOrder.Asc))));
@@ -36,7 +36,7 @@ public class ProductSortOptionsBuilder {
     }
 
     private static SortOptions sortByIsCurStageOperator(LoginUser loginUser) {
-        return SortOptions.of(so -> so.script(sc -> sc.script(curStageOperatorOrder(loginUser.getId())).type(ScriptSortType.Number)
+        return SortOptions.of(so -> so.script(sc -> sc.script(curStageOperatorOrder(String.valueOf(loginUser.getId()))).type(ScriptSortType.Number)
                 .order(SortOrder.Asc)));
     }
 }

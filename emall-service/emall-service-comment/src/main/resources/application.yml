@@ -1,11 +1,11 @@
 server:
-  port: 8085
+  port: 8088
 
 spring:
   application:
-    name: emall-service-cart
+    name: emall-service-comment
   datasource:
-    url: jdbc:mysql://mysql.middleware.emall.docker:3306/cart-db?characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://mysql.middleware.emall.docker:3306/comment-db?characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: root
     driverClassName: com.mysql.jdbc.Driver
@@ -37,7 +37,7 @@ spring:
       probability: 1.0
 
 mybatis-plus:
-  type-aliases-package: org.emall.model.cart.model
+  type-aliases-package: org.emall.model.comment.model
   mapper-locations: classpath:mapper/*.xml
   global-config:
     db-config:

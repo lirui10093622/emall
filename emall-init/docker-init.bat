@@ -50,7 +50,7 @@ cd %EMALL_SERVICE_DIR%\emall-service-comment
 docker stop emall-service-comment
 docker rmi emall-service-comment:1.0.0
 docker build -t emall-service-comment:1.0.0 .
-docker run -d --rm --name emall-service-comment --network emall-network -p 8085:8085 emall-service-comment:1.0.0
+docker run -d --rm --name emall-service-comment --network emall-network -p 8088:8088 emall-service-comment:1.0.0
 
 cd %EMALL_SERVICE_DIR%\emall-service-order
 docker stop emall-service-order
