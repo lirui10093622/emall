@@ -8,7 +8,6 @@
     <name>emall</name>
     <description>电商系统</description>
     <modules>
-        <module>emall-dependencies</module>
         <module>emall-super-pom</module>
         <module>emall-common</module>
         <module>emall-api</module>

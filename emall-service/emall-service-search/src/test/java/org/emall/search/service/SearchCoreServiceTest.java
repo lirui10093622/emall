@@ -19,12 +19,6 @@ class SearchCoreServiceTest {
     }
 
     @Test
-    void search() {
-        List<ProductDoc> productDocList = searchCoreService.search("手机");
-        log.info("productDocList: {}", productDocList);
-    }
-
-    @Test
     void searchProduct() {
     }
 
