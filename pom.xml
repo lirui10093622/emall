@@ -11,6 +11,7 @@
         <module>emall-super-pom</module>
         <module>emall-common</module>
         <module>emall-api</module>
+        <module>emall-component</module>
         <module>emall-service</module>
     </modules>
 </project>

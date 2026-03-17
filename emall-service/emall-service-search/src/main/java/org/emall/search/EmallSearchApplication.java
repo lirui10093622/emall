@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2025-09-02
  */
 @EnableDubbo
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "org.emall")
 public class EmallSearchApplication {
     public static void main(String[] args) {
         SpringApplication.run(EmallSearchApplication.class, args);

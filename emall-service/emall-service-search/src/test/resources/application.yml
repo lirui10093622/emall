@@ -30,6 +30,10 @@ spring:
     port: 6379
     password:
     database: 0
+  elasticsearch:
+    uris: http://elasticsearch.middleware.emall.docker:9200
+    username:
+    password:
   zipkin:
     base-url: http://zipkin.middleware.emall.docker:9411
   sleuth:

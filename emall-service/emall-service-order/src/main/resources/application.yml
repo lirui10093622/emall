@@ -2,6 +2,13 @@ server:
   port: 8081
 
 spring:
+  main:
+    allow-circular-references: true
+  cloud:
+    bootstrap:
+      enabled: false
+    compatibility-verifier:
+      enabled: false
   application:
     name: emall-service-order
   datasource:
